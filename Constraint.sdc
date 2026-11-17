@@ -1,0 +1,7 @@
+create_clock -name clk -period 1000 -waveform {0 500} [get_ports "clk"]
+set_clock_transition -rise 1.5 [get_clocks "clk"]
+set_clock_transition -fall 1.5 [get_clocks "clk"]
+set_clock_uncertainty 0.05 [get_ports "clk"]
+set_input_delay -max 20.0 [get_ports "rst_n"] -clock [get_clocks "clk"]
+set_input_delay -max 20.0 [get_ports "accel_data[*]"] -clock [get_clocks "clk"]
+set_output_delay -max 20.0 [get_ports "anomaly_flag"] -clock [get_clocks "clk"]
